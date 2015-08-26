@@ -1,0 +1,8 @@
+docker ps -a
+echo Stopping all containers
+docker stop $(docker ps -a -q) > /dev/null
+docker kill $(docker ps -a -q) > /dev/null
+echo Removing all
+docker rm $(docker ps -a -q) > /dev/null
+echo Active Processes 
+docker ps -a

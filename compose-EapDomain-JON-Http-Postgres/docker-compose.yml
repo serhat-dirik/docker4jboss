@@ -1,0 +1,66 @@
+master:
+  image: docker4jboss/eap6-base
+  volumes:
+    - ./eap:/eapConfig
+  command: /eapConfig/setupMaster.sh
+  container_name: eap-master
+  hostname: eap-master
+  dns: 172.17.0.25 
+  dns_search: example-com
+  links:
+    - rhqserver
+    - postgresdb
+    - httpdserver
+slave1:
+  image: docker4jboss/eap6-base
+  volumes:
+    - ./eap:/eapConfig
+  command: /eapConfig/setupSlave.sh
+  container_name: eap-slave1
+  hostname: eap-slave1
+  dns: 172.17.0.25 
+  dns_search: example-com
+  links:
+    - master
+    - rhqserver
+    - postgresdb
+    - httpdserver
+slave2:
+  image: docker4jboss/eap6-base
+  volumes:
+    - ./eap:/eapConfig
+  command: /eapConfig/setupSlave.sh
+  container_name: eap-slave2
+  hostname: eap-slave2
+  dns: 172.17.0.25 
+  dns_search: example-com
+  links:
+    - master
+    - rhqserver
+    - postgresdb
+    - httpdserver
+httpdserver:
+  image: docker4jboss/httpd-eap6
+  volumes:
+    - ./apache:/apacheConfig
+  command: /apacheConfig/setup.sh
+  container_name: httpdserver
+  hostname: httpdserver
+  dns_search: example-com
+  dns: 172.17.0.25 
+  links:
+    - rhqserver
+rhqserver:
+  image: docker4jboss/jon3-server
+  command: /opt/jboss/jon/startJON.sh
+  container_name: rhqserver
+  hostname: rhqserver
+  dns_search: example-com
+  dns: 172.17.0.25 
+postgresdb:
+  image: docker4jboss/postgres-9.3
+  command: /home/postgres/startDBandLoop.sh
+  container_name: postgresdb
+  hostname: postgresdb
+  dns: 172.17.0.25 
+  dns_search: example-com

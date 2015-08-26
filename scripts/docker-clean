@@ -1,0 +1,1 @@
+for i in ` docker images|grep \<none\>|awk '{print $3}'`;do docker stop $i; docker rm $i; docker rmi $i;done
