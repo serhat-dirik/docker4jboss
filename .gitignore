@@ -5,3 +5,6 @@ image-httpd-eap6/install/*.zip
 image-httpd-eap6/install/*.jar
 image-jon3-server/install/*.zip
 image-jon3-server/install/*.jar
+image-dv6-workshop/install/*.zip
+image-dv6-workshop/install/*.jar
+image-dv6-workshop/install/*.war

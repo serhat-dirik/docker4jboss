@@ -23,6 +23,9 @@ The file list below need to be downloaded from [Red Hat Customer site](http://ac
   * jon-plugin-pack-eap-3.3.0.GA.zip
   * jon-server-3.3.0.GA.zip
   * jon-plugin-pack-ews-3.3.0.GA.zip  
+  * jon-plugin-pack-brms-bpms-3.3.0.GA.zip
+  * jon-plugin-pack-datavirtualization-3.3.0.GA.zip
+  * jon-plugin-pack-fuse-3.3.0.GA.zip  
 
 ## Building The Image
  If you're planning to use your image for the composed demo environments within this project,you must use the recommended naming is ```docker4jboss/jon3-server```. Otherwise, specify the tag name as you wish.

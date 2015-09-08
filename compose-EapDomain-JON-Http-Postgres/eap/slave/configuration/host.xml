@@ -60,15 +60,16 @@
 
     <interfaces>
         <interface name="management">
-          <any-ipv4-address/>
+          <!-- any-ipv4-address/-->
+          <inet-address value="${jboss.bind.address.management:127.0.0.1}"/>
         </interface>
         <interface name="public">
-          <any-ipv4-address/>
+          <inet-address value="${jboss.bind.address:127.0.0.1}"/>
         </interface>
         <interface name="unsecure">
             <!-- Used for IIOP sockets in the standard configuration.
                  To secure JacORB you need to setup SSL -->
-          <any-ipv4-address/>
+          <inet-address value="${jboss.bind.address:127.0.0.1}"/>
         </interface>
     </interfaces>
 

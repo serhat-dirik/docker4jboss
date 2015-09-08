@@ -37,7 +37,7 @@ RUN  echo PGDATA=$PGDATA > /etc/sysconfig/pgsql/postgresql-9.3 \
 
 
 #############################################
-# Create database for JON server
+# Create database 
 #############################################
 USER postgres
 WORKDIR /home/postgres

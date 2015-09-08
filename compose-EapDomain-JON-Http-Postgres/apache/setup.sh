@@ -9,7 +9,8 @@ sed -i -e "s/<entry key=\"rhq\.agent\.server\.bind-address\".*/<entry key=\"rhq\
 #########
 # Get the IP address
 IPADDR=$(ip a s | sed -ne '/127.0.0.1/!{s/^[ \t]*inet[ \t]*\([0-9.]\+\)\/.*$/\1/p}')
-
+#copy mod_cluster config
+cp -rf /apacheConfig/mod_cluster.conf /opt/apache/jboss-ews-2.1/httpd/conf.d/
 # Adjust the IP addresses in the mod_cluster.conf file
 sed -i "s|[0-9\.\*]*:6666|$IPADDR:6666|g" /opt/apache/jboss-ews-2.1/httpd/conf.d/mod_cluster.conf
 sed -i "s|[0-9\.\*]*:80|$IPADDR:80|g" /opt/apache/jboss-ews-2.1/httpd/conf.d/mod_cluster.conf

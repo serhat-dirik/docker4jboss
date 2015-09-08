@@ -1250,7 +1250,7 @@
                 </hornetq-server>
             </subsystem>
             <subsystem xmlns="urn:jboss:domain:modcluster:1.2">
-                <mod-cluster-config advertise-socket="modcluster"  connector="ajp">
+                <mod-cluster-config advertise-socket="modcluster"  proxy-list="httpdserver:6666" connector="ajp">
                     <dynamic-load-provider>
                         <load-metric type="busyness"/>
                     </dynamic-load-provider>

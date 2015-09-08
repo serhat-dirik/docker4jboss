@@ -76,4 +76,4 @@ RUN cd /opt/apache/jboss-ews-2.1/httpd; /opt/apache/jboss-ews-2.1/httpd/.postins
  && rm /opt/apache/rhq-agent-update.log
 
 CMD /opt/apache/launch.sh
-EXPOSE 80 6666 25 22
+EXPOSE 80 6666 8000 8009 25 22

@@ -13,11 +13,17 @@ RUN  echo "root:redhat1!" | /usr/sbin/chpasswd \
 # Execute system update
  && dnf -y update \
 # && echo Install some necessary packages \
- && dnf -y install xmlstarlet saxon augeas bsdtar which unzip sudo openssh-clients iputils iproute httpd-tools wget tar git findutils  \
+ && dnf -y install hostname xmlstarlet saxon augeas bsdtar which unzip sudo openssh-clients iputils iproute httpd-tools wget tar git findutils  \
 # Install jdk 8
  && dnf -y install java-1.8.0-openjdk-devel \
 # && echo clean cache \
  && dnf clean all \
+ # Increase ulimit
+ && echo "* soft nofile 4096" >> /etc/security/limits.conf \
+ && echo "* hard nofile 4096" >> /etc/security/limits.conf \
+ #  allow testing with buffers up to 64MB
+ && echo "net.core.rmem_max = 67108864" >> /etc/sysctl.conf \
+ && echo "net.core.wmem_max = 67108864" >> /etc/sysctl.conf \
 #Install Maven
  && curl -sSL http://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz | tar xzf - -C /usr/share \
  && mv /usr/share/apache-maven-$MAVEN_VERSION /usr/share/maven \

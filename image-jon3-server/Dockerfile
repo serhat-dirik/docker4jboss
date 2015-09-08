@@ -47,6 +47,15 @@ RUN unzip /tmp/host/install/jon-server-3.3.0.GA.zip -d $HOME/jon \
  && unzip /tmp/host/install/jon-plugin-pack-eap-3.3.0.GA.zip -d $HOME/jon/jon-server-3.3.0.GA/plugins \
  && cp -r $HOME/jon/jon-server-3.3.0.GA/plugins/jon-plugin-pack-eap-3.3.0.GA/*.jar $HOME/jon/jon-server-3.3.0.GA/plugins \
  && rm -r $HOME/jon/jon-server-3.3.0.GA/plugins/jon-plugin-pack-eap-3.3.0.GA \
+ && unzip /tmp/host/install/jon-plugin-pack-brms-bpms-3.3.0.GA.zip -d $HOME/jon/jon-server-3.3.0.GA/plugins \
+ && cp -r $HOME/jon/jon-server-3.3.0.GA/plugins/jon-plugin-pack-brms-bpms-3.3.0.GA/*.jar $HOME/jon/jon-server-3.3.0.GA/plugins \
+ && rm -r $HOME/jon/jon-server-3.3.0.GA/plugins/jon-plugin-pack-brms-bpms-3.3.0.GA \
+ && unzip /tmp/host/install/jon-plugin-pack-datavirtualization-3.3.0.GA.zip -d $HOME/jon/jon-server-3.3.0.GA/plugins \
+ && cp -r $HOME/jon/jon-server-3.3.0.GA/plugins/jon-plugin-pack-datavirtualization-3.3.0.GA/*.jar $HOME/jon/jon-server-3.3.0.GA/plugins \
+ && rm -r $HOME/jon/jon-server-3.3.0.GA/plugins/jon-plugin-pack-datavirtualization-3.3.0.GA \
+ && unzip /tmp/host/install/jon-plugin-pack-fuse-3.3.0.GA.zip -d $HOME/jon/jon-server-3.3.0.GA/plugins \
+ && cp -r $HOME/jon/jon-server-3.3.0.GA/plugins/jon-plugin-pack-fuse-3.3.0.GA/*.jar $HOME/jon/jon-server-3.3.0.GA/plugins \
+ && rm -r $HOME/jon/jon-server-3.3.0.GA/plugins/jon-plugin-pack-fuse-3.3.0.GA \
  # Config
  && cp $HOME/jon/jon-server-3.3.0.GA/bin/rhq-server.properties $HOME/jon/jon-server-3.3.0.GA/bin/rhq-server.properties.orig \
  && cp /tmp/host/support/rhq-server.properties $HOME/jon/jon-server-3.3.0.GA/bin/rhq-server.properties \
