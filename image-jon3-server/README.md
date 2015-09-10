@@ -1,9 +1,7 @@
 JON 3 Server
 =======
 
-A comprehensive, all in one JON 3 Server image. Database, Storage, Server & Local agent
-components are installed locally. This image contains only EAP & EWS agent plugin packs. If you need
-to manage other JBoss components, you need to download and import those plugins into the JON Server as well.
+A comprehensive, all in one JON 3.3 Server image extended from [postgres image](../image-postgres-9/README.md). Database, Storage, Server & Local agent components are all installed locally. This image contains all agent plugin packs, so almost all JBoss Middleware can be monitored and managed.  
 
 ### Image Content
 
@@ -11,6 +9,7 @@ to manage other JBoss components, you need to download and import those plugins 
 - Postgres 9.3, default port 5432 is exposed, administrative user ```postgres``` is defined (password ```postgres```). ```rhqadmin``` user is defined for JON related tasks (password is ```rhqadmin```).  
 - JDK 1.8
 - JON 3.3 Storage, Server & Local agent
+- SSH Server
 
 ## Prerequisites
 

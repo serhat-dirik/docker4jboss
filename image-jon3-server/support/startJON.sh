@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo /usr/sbin/sshd -D >> /dev/null &
+
 RHQ_SERVER_HOME="/opt/jboss/jon/jon-server-3.3.0.GA"
 PGDATA="/var/lib/pgsql/9.3/data"
 
@@ -24,7 +26,4 @@ su - jboss -c "$RHQ_SERVER_HOME/bin/rhqctl console --server"
 
 
 #The routine below is written to keep the container alive
-for (( ; ; ))
-do
-   sleep 10000
-done
+while true; do  echo -e "Enter  exit to stop container :"; read value; if [ $value = "exit" ];then break; fi;  done

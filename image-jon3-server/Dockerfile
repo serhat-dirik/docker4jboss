@@ -1,15 +1,11 @@
 # Use postgres image as a base
-FROM docker4jboss/postgres-9.3
+FROM docker4jboss/postgres-9
 # Maintainer details
 MAINTAINER Serhat Dirik<serhat@redhat.com>
 
 USER root
-
-RUN  dnf -y install which unzip sudo wget tar findutils java-1.8.0-openjdk-devel \
- # && echo clean cache \
- && dnf clean all \
- # Create a user and group used to launch processes
- && groupadd -r jboss  && useradd -r -g jboss -G postgres -m -d /opt/jboss -c "JBoss user" jboss \
+# Create a user and group used to launch processes
+RUN groupadd -r jboss  && useradd -r -g jboss -G postgres -m -d /opt/jboss -c "JBoss user" jboss \
  && chmod 755 /opt/jboss \
  && mkdir /opt/jboss/jon \
  && chown -R jboss:jboss /opt/jboss \
