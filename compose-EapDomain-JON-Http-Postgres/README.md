@@ -15,7 +15,7 @@ Following images need to be in your local registry:
 - [docker4jboss/jon3-server](../image-jon3-server/README.md)
 
 If you haven't done yet, please build this images first on your local server.
-> All image binaries can be found in Red Hat's [internal registry](http:/docker-registry.usersys.redhat.com). If you're an RedHatter, you can download images from that repository instead of building them locally.
+> All image binaries can be found in Red Hat's [internal registry](http:/docker-registry.usersys.redhat.com). If you're an RedHatter, you can download images from that repository instead of building locally.
 
 ```phensley/docker-dns ``` image is used as dns server in this demo. Pull it from docker hub
 

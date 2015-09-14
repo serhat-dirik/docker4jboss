@@ -12,7 +12,7 @@ I tried to use a clean naming convention for sub directories in the project, so 
 - [image-dv6](./image-dv6/README.md): JBoss Data Virtualizations 6.1 + Web UI
 - [compose-EapDomain-JON-Httpd-Postgres](./compose-EapDomain-JON-Httpd-Postgres/README.md): 3 EAP server in domain mode as one master and two slaves, httpd as front load balancer and JON server for management & monitoring. A simple cluster test application is also included.
 
-> All image binaries can be found in Red Hat's [internal registry](http:/docker-registry.usersys.redhat.com). If you're an RedHatter, you can download images from that repository instead of building them locally.
+> All image binaries can be found in Red Hat's [internal registry](http:/docker-registry.usersys.redhat.com). If you're an RedHatter, you can download images from that repository instead of building locally.
 
 ## Prerequisites
 
