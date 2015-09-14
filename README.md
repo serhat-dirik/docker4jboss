@@ -4,6 +4,16 @@ This project contains docker images & composed environments for JBoss Middleware
 
 I tried to use a clean naming convention for sub directories in the project, so it should be clear what resides under each subdirectory. You can also find a fair documentation  and instructions under each subdirectory. I suggest start digging with compose subdirectories that created for composition of several components working together for a certain purpose, than build required images & start playing.
 
+- [image-base](./image-base/README.md) : A Base image that extended from fedora:22 and loaded with several useful tools including ssh server
+- [image-eap6](./image-eap6/README.md) : JBoss EAP 6.4.2 and JON Agent
+- [image-httpd-ews2](./image-httpd-ews2/README.md): Apache HTTPD (JBoss EWS2) server & JON Agent
+- [image-jon3-server](./image-jon3-server/README.md): JON 3.3 All in one server, eap, ews, dv, bpm, brms, fuse, amq agents are included
+- [image-postgres-9](./image-postgres-9/README.md): Postgres 9.3 Server
+- [image-dv6](./image-dv6/README.md): JBoss Data Virtualizations 6.1 + Web UI
+- [compose-EapDomain-JON-Httpd-Postgres](./compose-EapDomain-JON-Httpd-Postgres/README.md): 3 EAP server in domain mode as one master and two slaves, httpd as front load balancer and JON server for management & monitoring. A simple cluster test application is also included.
+
+> All image binaries can be found in Red Hat's [internal registry](http:/docker-registry.usersys.redhat.com). If you're an RedHatter, you can download images from that repository instead of building them locally.
+
 ## Prerequisites
 
 ### Docker
@@ -19,7 +29,7 @@ A comprehensive platform list can be found [here](https://docs.docker.com/instal
 To get started with Docker, please refer to the official [user guide](https://docs.docker.com/userguide/)
 
 ### Docker Compose
-You'll need [docker-compose](https://docs.docker.com/compose/) to run composed environments under subdirectories that start with "compose". Please install the latest version as following the instructions on [docker-compose web page](https://docs.docker.com/compose/install/).
+[docker-compose](https://docs.docker.com/compose/) can help you to run composed environments in more easy and efficient way. Please install the latest version as following the instructions on [docker-compose web page](https://docs.docker.com/compose/install/).
 
 ### Disable Firewalld (RHEL, CentOS, Fedora) on Your Host
 Firewalld is default firewall management in RHEL 7, Centos 7, and Fedora 18+. It's a new stack replacing iptables but docker controls iptables and don't know how to deal with firewalld yet, so its strongly suggested that you stop firewalld service & start iptables service on Red Hat linux derivatives before you run any composed environments.  An alternative approach to this would be defining required rule sets for internal container communication and change docker's default option to ```--iptables=false`` to prevent docker changing iptables on your host. Let me warn you, about that this means that you'll be doing a lot of work manually by yourself.

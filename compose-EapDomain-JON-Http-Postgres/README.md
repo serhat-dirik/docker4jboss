@@ -2,25 +2,26 @@ EAP Domain Mode, JON & Httpd Mod Cluster
 =======
 
  This environment is designed to demonstrate EAP 6 Domain Operating mode with other complementary JBoss components. You can test EAP 6 in domain mode with two slave nodes, JON management & monitoring capabilities. An apache httpd server is also installed as a LoadBalancer, so you can also test mod_cluster capabilities as well.
+ ![Architecture](./resource/architecture.png)
 
 ## Prerequisites
 
+
 Following images need to be in your local registry:
 
-- docker4jboss/eap6-base
-- docker4jboss/httpd-eap6
-- docker4jboss/postgres-9.3
-- docker4jboss/jon3-server
+- [docker4jboss/eap6](../image-eap6/README.md)
+- [docker4jboss/httpd-ews2](../image-httpd-ews2/README.md)
+- [docker4jboss/postgres-9](../image-postgres-9/README.md)
+- [docker4jboss/jon3-server](../image-jon3-server/README.md)
 
 If you haven't done yet, please build this images first on your local server.
+> All image binaries can be found in Red Hat's [internal registry](http:/docker-registry.usersys.redhat.com). If you're an RedHatter, you can download images from that repository instead of building them locally.
 
-```phensley/docker-dns ``` image is used as dns server. Pull it from docker hub
+```phensley/docker-dns ``` image is used as dns server in this demo. Pull it from docker hub
 
 ```bash
 docker pull phensley/docker-dns
 ```
-
-   docker-compose is also need to be installed
 
 ## How to run
 
@@ -48,7 +49,7 @@ JON Server (rhqserver) also has a postgres server installation which can be used
 sh destroyDemo.sh
 ```
 
-##EAP CLuster (Session Sharing) Demo
+## EAP CLuster (Session Sharing) Demo
 
 I've included a small cluster test application to demo. It's useful to demonstrate cluster & session sharing capabilities of EAP.
 - You first need to deploy it :
