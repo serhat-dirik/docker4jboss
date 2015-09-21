@@ -66,6 +66,8 @@ RUN mkdir $HOME/eap \
 #Update
  && $HOME/eap/jboss-eap-6.4/bin/jboss-cli.sh --command="patch apply /tmp/host/install/jboss-eap-6.4.1-patch.zip --override-all" \
  && $HOME/eap/jboss-eap-6.4/bin/jboss-cli.sh --command="patch apply /tmp/host/install/jboss-eap-6.4.2-patch.zip --override-all" \
+ && $HOME/eap/jboss-eap-6.4/bin/jboss-cli.sh --command="patch apply /tmp/host/install/jboss-eap-6.4.3-patch.zip --override-all" \
+ && $HOME/eap/jboss-eap-6.4/bin/jboss-cli.sh --command="patch apply /tmp/host/install/BZ-1258994.zip --override-all" \
 # Modify permissions on Maven settings file
  && cp /tmp/host/support/settings.xml /opt/jboss/.m2/settings.xml \
  && chown jboss:jboss /opt/jboss/.m2/settings.xml \
@@ -80,7 +82,7 @@ RUN cp /tmp/host/support/*.sh /usr/bin \
  && rm -r /opt/jboss/jon-update \
  && rm /opt/jboss/rhq-agent-update.log \
  && rm -r /opt/jboss/tmp
-VOLUME ["/opt/jboss/eap/jboss-eap-6.4/standalone","/opt/jboss/eap/jboss-eap-6.4/domain","/opt/jboss/jon/rhq-agent/conf"]
+#VOLUME ["/opt/jboss/eap/jboss-eap-6.4/standalone","/opt/jboss/eap/jboss-eap-6.4/domain","/opt/jboss/jon/rhq-agent/conf"]
 USER jboss
 CMD /usr/bin/startSshAndEap.sh
 EXPOSE 80 6666 8009 8080 8787 8443 3528 3529 7500 45700/udp 9876/udp 23364/udp 7600 57600 55200/udp 45688/udp 54200/udp 5445 8090 4417 4712 4713 9990 9999 7080 16163 25 22

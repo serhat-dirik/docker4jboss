@@ -1,7 +1,7 @@
 Base EAP 6 Image
 =======
 
-A base JBoss EAP 6 (currently 6.4.2) image that extends [base image](../image-base/README.md) to create & execute EAP 6 demo containers on top. JON Agent & sshd server are also installed inside this image, therefore JON Server can be configured to monitor & manage and it can be also used as a remote host with ssh support.
+A base JBoss EAP 6 (currently 6.4.3) image that extends [base image](../image-base/README.md) to create & execute EAP 6 demo containers on top. JON Agent & sshd server are also installed inside this image, therefore JON Server can be configured to monitor & manage and it can be also used as a remote host with ssh support.
 
 ### Image Content
 
@@ -48,6 +48,8 @@ The file list below need to be downloaded from [Red Hat Customer site](http://ac
   * jboss-eap-6.4.0.zip
   * jboss-eap-6.4.1-patch.zip
   * jboss-eap-6.4.2-patch.zip
+  * jboss-eap-6.4.3-patch.zip
+  * BZ-1258994.zip (6.4.3 fix update)
   * jboss-eap-native-utils-6.4.0-RHEL7-x86_64.zip
   * jboss-eap-native-webserver-connectors-6.4.0-RHEL7-x86_64.zip
   * jboss-eap-native-6.4.0-RHEL7-x86_64.zip
