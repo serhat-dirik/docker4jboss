@@ -1,0 +1,1 @@
+/subsystem=web/virtual-server=default-host:write-attribute(name=enable-welcome-root,value=false)

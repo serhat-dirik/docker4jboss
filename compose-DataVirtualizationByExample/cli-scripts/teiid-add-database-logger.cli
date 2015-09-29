@@ -1,0 +1,15 @@
+connect
+
+batch
+
+/subsystem=datasources/data-source=teiid-log-ds:add(jndi-name=java:/teiid-log-ds,  driver-name="${db.driver_name}",  connection-url="${db.url}", user-name="${db.user}", password="${db.password}", enabled=true, use-java-context=true )
+/subsystem=datasources/data-source=teiid-log-ds:enable
+
+/deployment=database-service.jar:add(runtime-name=database-service.jar,content=[{path=dataVirtualization/logging/database-service-1.1.0.redhat-4.jar/,archive=false,relative-to=jboss.home.dir}],enabled=true)
+
+/subsystem=logging/custom-handler=TEIID_JPA_LOG:add(class=org.teiid.logger.DatabaseAppender, module=org.jboss.teiid.extensions, level=DEBUG)
+/subsystem=logging/async-handler=TEIID_COMMAND_LOG:add(level=DEBUG, queue-length=50, overflow-action=BLOCK, subhandlers=[TEIID_JPA_LOG], enabled=true)
+/subsystem=logging/async-handler=TEIID_AUDIT_LOG:add(level=DEBUG, queue-length=50, overflow-action=BLOCK, subhandlers=[TEIID_JPA_LOG], enabled=true)
+
+
+run-batch

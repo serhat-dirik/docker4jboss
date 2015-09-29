@@ -1,0 +1,3 @@
+/subsystem=datasources/jdbc-driver=modeshape:add(driver-name=modeshape,driver-module-name=org.modeshape.jdbc,driver-class-name=org.modeshape.jdbc.LocalJcrDriver)
+data-source add --name=ModeShapeDS --enabled=true --use-java-context=true --jndi-name="${db.jndi_name}" --connection-url="${db.url}" --driver-name="modeshape" --user-name="${db.user}" --password="${db.password}"
+/subsystem=datasources/data-source=ModeShapeDS/connection-properties=teiidsupport:add(value=true)

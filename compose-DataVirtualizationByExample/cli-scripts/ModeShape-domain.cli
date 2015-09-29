@@ -1,0 +1,80 @@
+/profile=ha/subsystem=modeshape:add
+/profile=ha/subsystem=security/security-domain=modeshape-security:add
+/profile=ha/subsystem=security/security-domain=modeshape-security/authentication=classic:add( \
+    login-modules=[{"code" => "RealmDirect", "flag" => "required","module-options" => [ ("password-stacking"=>"useFirstPass")]}] \
+)
+/profile=ha/subsystem=infinispan/cache-container=modeshape:add(module="org.modeshape")
+/profile=ha/subsystem=infinispan/cache-container=modeshape/transport=TRANSPORT:add(lock-timeout="60000")
+/profile=ha/subsystem=infinispan/cache-container=modeshape/replicated-cache=dv:add(mode="SYNC", batching="true")
+/profile=ha/subsystem=infinispan/cache-container=modeshape/replicated-cache=dv/locking=LOCKING:add(isolation=READ_COMMITTED)
+/profile=ha/subsystem=infinispan/cache-container=modeshape/replicated-cache=dv/transaction=TRANSACTION:add(mode=NON_XA,locking=PESSIMISTIC)
+/profile=ha/subsystem=infinispan/cache-container=modeshape/replicated-cache=dv/file-store=FILE_STORE:add(path="modeshape/store/dv-${jboss.node.name}",relative-to="jboss.server.data.dir",passivation=false,purge=false)
+/profile=ha/subsystem=infinispan/cache-container=modeshape-binary-store:add(module="org.modeshape")
+/profile=ha/subsystem=infinispan/cache-container=modeshape-binary-store/transport=TRANSPORT:add(lock-timeout="60000")
+/profile=ha/subsystem=infinispan/cache-container=modeshape-binary-store/replicated-cache=dv-binary-data:add(mode="SYNC", batching="true")
+/profile=ha/subsystem=infinispan/cache-container=modeshape-binary-store/replicated-cache=dv-binary-data/locking=LOCKING:add(isolation=READ_COMMITTED)
+/profile=ha/subsystem=infinispan/cache-container=modeshape-binary-store/replicated-cache=dv-binary-data/transaction=TRANSACTION:add(mode=NON_XA,locking=PESSIMISTIC)
+/profile=ha/subsystem=infinispan/cache-container=modeshape-binary-store/replicated-cache=dv-binary-data/file-store=FILE_STORE:add(path="modeshape/binary-store/dv-data-${jboss.node.name}",relative-to="jboss.server.data.dir",passivation=false,purge=false)
+/profile=ha/subsystem=infinispan/cache-container=modeshape-binary-store/replicated-cache=dv-binary-metadata:add(mode="SYNC", batching="true")
+/profile=ha/subsystem=infinispan/cache-container=modeshape-binary-store/replicated-cache=dv-binary-metadata/locking=LOCKING:add(isolation=READ_COMMITTED)
+/profile=ha/subsystem=infinispan/cache-container=modeshape-binary-store/replicated-cache=dv-binary-metadata/transaction=TRANSACTION:add(mode=NON_XA,locking=PESSIMISTIC)
+/profile=ha/subsystem=infinispan/cache-container=modeshape-binary-store/replicated-cache=dv-binary-metadata/file-store=FILE_STORE:add(path="modeshape/binary-store/dv-metadata-${jboss.node.name}",relative-to="jboss.server.data.dir",passivation=false,purge=false)
+/profile=ha/subsystem=modeshape/repository=dv:add(cache-container="modeshape",cache-name="dv",cluster-name="modeshape-dv",cluster-stack="tcp",security-domain="modeshape-security",use-anonymous-upon-failed-authentication="false",anonymous-roles=["readonly"],rebuild-upon-startup="if_missing",default-initial-content="initial-content-default.xml")
+/profile=ha/subsystem=modeshape/repository=dv/configuration=index-storage:add()
+/profile=ha/subsystem=modeshape/repository=dv/configuration=index-storage/storage-type=local-file-index-storage:add(path="modeshape/indexes/dv-indexes-${jboss.node.name}")
+/profile=ha/subsystem=modeshape/repository=dv/configuration=binary-storage:add()
+/profile=ha/subsystem=modeshape/repository=dv/configuration=binary-storage/storage-type=cache-binary-storage:add(data-cache-name="dv-binary-data", metadata-cache-name="dv-binary-metadata", cache-container="modeshape-binary-store")
+/profile=ha/subsystem=modeshape/repository=dv/sequencer=delimited-text-sequencer:add( classname="org.modeshape.sequencer.text.DelimitedTextSequencer", module="org.modeshape.sequencer.text", path-expressions=["/files(//*.csv[*])/jcr:content[@jcr:data] => /derived/text/delimited/$1"], properties=[{ "splitPattern"=>"," }])
+/profile=ha/subsystem=modeshape/repository=dv/sequencer=fixed-width-text-sequencer:add( classname="org.modeshape.sequencer.text.FixedWidthTextSequencer", module="org.modeshape.sequencer.text", path-expressions=["/files(//*.txt[*])/jcr:content[@jcr:data] => /derived/text/fixedWidth/$1"], properties=[{ "commentMarker"=>"#" }])
+/profile=ha/subsystem=modeshape/repository=dv/sequencer=ddl-sequencer:add( classname="org.modeshape.sequencer.ddl.DdlSequencer", module="org.modeshape.sequencer.ddl", path-expressions=["/files(//*.ddl[*])/jcr:content[@jcr:data] => /derived/ddl/$1"])
+/profile=ha/subsystem=modeshape/repository=dv/sequencer=cnd-sequencer:add( classname="cnd", module="org.modeshape", path-expressions=["/files(//*.cnd[*])/jcr:content[@jcr:data] => /derived/cnd/$1"])
+/profile=ha/subsystem=modeshape/repository=dv/sequencer=teiid-model-sequencer:add( classname="model", module="org.modeshape.sequencer.teiid", path-expressions=["/files(//*.xmi[*])/jcr:content[@jcr:data] => /derived/teiid/models/$1"])
+/profile=ha/subsystem=modeshape/repository=dv/sequencer=teiid-vdb-sequencer:add( classname="vdb", module="org.modeshape.sequencer.teiid", path-expressions=["/files(//*.vdb[*])/jcr:content[@jcr:data] => /derived/teiid/vdbs/$1"])
+/profile=ha/subsystem=modeshape/repository=dv/sequencer=xsd-sequencer:add( classname="xsd", module="org.modeshape.sequencer.xsd", path-expressions=["/files(//*.xsd[*])/jcr:content[@jcr:data] => /derived/xsd/$1"])
+/profile=ha/subsystem=modeshape/repository=dv/sequencer=wsdl-sequencer:add( classname="wsdl", module="org.modeshape.sequencer.wsdl", path-expressions=["/files(//*.wsdl[*])/jcr:content[@jcr:data] => /derived/wsdl/$1"])
+/profile=ha/subsystem=modeshape/repository=dv/sequencer=xml-sequencer:add( classname="xml", module="org.modeshape.sequencer.xml", path-expressions=["/files(//*.xml[*])/jcr:content[@jcr:data] => /derived/xml/$1"])
+/profile=ha/subsystem=modeshape/repository=dv/sequencer=zip-sequencer:add( classname="zip", module="org.modeshape.sequencer.zip", path-expressions=["/files(//*.zip[*])/jcr:content[@jcr:data] => /derived/zip/$1"])
+/profile=ha/subsystem=modeshape/webapp=modeshape-rest.war:add
+/profile=ha/subsystem=modeshape/webapp=modeshape-webdav.war:add
+/profile=ha/subsystem=modeshape/webapp=modeshape-cmis.war:add
+
+/profile=full-ha/subsystem=modeshape:add
+/profile=full-ha/subsystem=security/security-domain=modeshape-security:add
+/profile=full-ha/subsystem=security/security-domain=modeshape-security/authentication=classic:add( \
+    login-modules=[{"code" => "RealmDirect", "flag" => "required","module-options" => [ ("password-stacking"=>"useFirstPass")]}] \
+)
+/profile=full-ha/subsystem=infinispan/cache-container=modeshape:add(module="org.modeshape")
+/profile=full-ha/subsystem=infinispan/cache-container=modeshape/transport=TRANSPORT:add(lock-timeout="60000")
+/profile=full-ha/subsystem=infinispan/cache-container=modeshape/replicated-cache=dv:add(mode="SYNC", batching="true")
+/profile=full-ha/subsystem=infinispan/cache-container=modeshape/replicated-cache=dv/locking=LOCKING:add(isolation=READ_COMMITTED)
+/profile=full-ha/subsystem=infinispan/cache-container=modeshape/replicated-cache=dv/transaction=TRANSACTION:add(mode=NON_XA,locking=PESSIMISTIC)
+/profile=full-ha/subsystem=infinispan/cache-container=modeshape/replicated-cache=dv/file-store=FILE_STORE:add(path="modeshape/store/dv-${jboss.node.name}",relative-to="jboss.server.data.dir",passivation=false,purge=false)
+/profile=full-ha/subsystem=infinispan/cache-container=modeshape-binary-store:add(module="org.modeshape")
+/profile=full-ha/subsystem=infinispan/cache-container=modeshape-binary-store/transport=TRANSPORT:add(lock-timeout="60000")
+/profile=full-ha/subsystem=infinispan/cache-container=modeshape-binary-store/replicated-cache=dv-binary-data:add(mode="SYNC", batching="true")
+/profile=full-ha/subsystem=infinispan/cache-container=modeshape-binary-store/replicated-cache=dv-binary-data/locking=LOCKING:add(isolation=READ_COMMITTED)
+/profile=full-ha/subsystem=infinispan/cache-container=modeshape-binary-store/replicated-cache=dv-binary-data/transaction=TRANSACTION:add(mode=NON_XA,locking=PESSIMISTIC)
+/profile=full-ha/subsystem=infinispan/cache-container=modeshape-binary-store/replicated-cache=dv-binary-data/file-store=FILE_STORE:add(path="modeshape/binary-store/dv-data-${jboss.node.name}",relative-to="jboss.server.data.dir",passivation=false,purge=false)
+/profile=full-ha/subsystem=infinispan/cache-container=modeshape-binary-store/replicated-cache=dv-binary-metadata:add(mode="SYNC", batching="true")
+/profile=full-ha/subsystem=infinispan/cache-container=modeshape-binary-store/replicated-cache=dv-binary-metadata/locking=LOCKING:add(isolation=READ_COMMITTED)
+/profile=full-ha/subsystem=infinispan/cache-container=modeshape-binary-store/replicated-cache=dv-binary-metadata/transaction=TRANSACTION:add(mode=NON_XA,locking=PESSIMISTIC)
+/profile=full-ha/subsystem=infinispan/cache-container=modeshape-binary-store/replicated-cache=dv-binary-metadata/file-store=FILE_STORE:add(path="modeshape/binary-store/dv-metadata-${jboss.node.name}",relative-to="jboss.server.data.dir",passivation=false,purge=false)
+/profile=full-ha/subsystem=modeshape/repository=dv:add(cache-container="modeshape",cache-name="dv",cluster-name="modeshape-dv",cluster-stack="tcp",security-domain="modeshape-security",use-anonymous-upon-failed-authentication="false",anonymous-roles=["readonly"],rebuild-upon-startup="if_missing",default-initial-content="initial-content-default.xml")
+/profile=full-ha/subsystem=modeshape/repository=dv/configuration=index-storage:add()
+/profile=full-ha/subsystem=modeshape/repository=dv/configuration=index-storage/storage-type=local-file-index-storage:add(path="modeshape/indexes/dv-indexes-${jboss.node.name}")
+/profile=full-ha/subsystem=modeshape/repository=dv/configuration=binary-storage:add()
+/profile=full-ha/subsystem=modeshape/repository=dv/configuration=binary-storage/storage-type=cache-binary-storage:add(data-cache-name="dv-binary-data", metadata-cache-name="dv-binary-metadata", cache-container="modeshape-binary-store")
+/profile=full-ha/subsystem=modeshape/repository=dv/sequencer=delimited-text-sequencer:add( classname="org.modeshape.sequencer.text.DelimitedTextSequencer", module="org.modeshape.sequencer.text", path-expressions=["/files(//*.csv[*])/jcr:content[@jcr:data] => /derived/text/delimited/$1"], properties=[{ "splitPattern"=>"," }])
+/profile=full-ha/subsystem=modeshape/repository=dv/sequencer=fixed-width-text-sequencer:add( classname="org.modeshape.sequencer.text.FixedWidthTextSequencer", module="org.modeshape.sequencer.text", path-expressions=["/files(//*.txt[*])/jcr:content[@jcr:data] => /derived/text/fixedWidth/$1"], properties=[{ "commentMarker"=>"#" }])
+/profile=full-ha/subsystem=modeshape/repository=dv/sequencer=ddl-sequencer:add( classname="org.modeshape.sequencer.ddl.DdlSequencer", module="org.modeshape.sequencer.ddl", path-expressions=["/files(//*.ddl[*])/jcr:content[@jcr:data] => /derived/ddl/$1"])
+/profile=full-ha/subsystem=modeshape/repository=dv/sequencer=cnd-sequencer:add( classname="cnd", module="org.modeshape", path-expressions=["/files(//*.cnd[*])/jcr:content[@jcr:data] => /derived/cnd/$1"])
+/profile=full-ha/subsystem=modeshape/repository=dv/sequencer=teiid-model-sequencer:add( classname="model", module="org.modeshape.sequencer.teiid", path-expressions=["/files(//*.xmi[*])/jcr:content[@jcr:data] => /derived/teiid/models/$1"])
+/profile=full-ha/subsystem=modeshape/repository=dv/sequencer=teiid-vdb-sequencer:add( classname="vdb", module="org.modeshape.sequencer.teiid", path-expressions=["/files(//*.vdb[*])/jcr:content[@jcr:data] => /derived/teiid/vdbs/$1"])
+/profile=full-ha/subsystem=modeshape/repository=dv/sequencer=xsd-sequencer:add( classname="xsd", module="org.modeshape.sequencer.xsd", path-expressions=["/files(//*.xsd[*])/jcr:content[@jcr:data] => /derived/xsd/$1"])
+/profile=full-ha/subsystem=modeshape/repository=dv/sequencer=wsdl-sequencer:add( classname="wsdl", module="org.modeshape.sequencer.wsdl", path-expressions=["/files(//*.wsdl[*])/jcr:content[@jcr:data] => /derived/wsdl/$1"])
+/profile=full-ha/subsystem=modeshape/repository=dv/sequencer=xml-sequencer:add( classname="xml", module="org.modeshape.sequencer.xml", path-expressions=["/files(//*.xml[*])/jcr:content[@jcr:data] => /derived/xml/$1"])
+/profile=full-ha/subsystem=modeshape/repository=dv/sequencer=zip-sequencer:add( classname="zip", module="org.modeshape.sequencer.zip", path-expressions=["/files(//*.zip[*])/jcr:content[@jcr:data] => /derived/zip/$1"])
+/profile=full-ha/subsystem=modeshape/webapp=modeshape-rest.war:add
+/profile=full-ha/subsystem=modeshape/webapp=modeshape-webdav.war:add
+/profile=full-ha/subsystem=modeshape/webapp=modeshape-cmis.war:add
+deploy dataVirtualization/vdb/ModeShape.vdb --all-server-groups

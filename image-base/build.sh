@@ -1,1 +1,1 @@
-docker build --force-rm=true -t docker4jboss/base .
+docker build --force-rm=true --rm=true -t docker4jboss/base .

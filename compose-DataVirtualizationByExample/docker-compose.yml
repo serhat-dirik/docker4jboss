@@ -1,0 +1,56 @@
+dv-master:
+  image: docker4jboss/dv6
+  volumes:
+    - ./eap:/eapConfig
+  command: /eapConfig/setupMaster.sh
+  container_name: dv-master
+  hostname: dv-master
+  dns: 172.17.0.10 
+  dns_search: example.com
+  links:
+    - rhq-server
+    - httpd-server
+dv-slave1:
+  image: docker4jboss/dv6
+  volumes:
+    - ./eap:/eapConfig
+  command: /eapConfig/setupSlave.sh
+  container_name: dv-slave1
+  hostname: dv-slave1
+  dns: 172.17.0.10 
+  dns_search: example.com
+  links:
+    - dv-master
+    - rhq-server
+    - httpd-server
+dv-slave2:
+  image: docker4jboss/eap6
+  volumes:
+    - ./eap:/eapConfig
+  command: /eapConfig/setupSlave.sh
+  container_name: dv-slave2
+  hostname: dv-slave2
+  dns: 172.17.0.10 
+  dns_search: example.com
+  links:
+    - dv-master
+    - rhq-server
+    - httpd-server
+httpd-server:
+  image: docker4jboss/httpd-ews2
+  volumes:
+    - ./apache:/apacheConfig
+  command: /apacheConfig/setup.sh
+  container_name: httpd-server
+  hostname: httpd-server
+  dns_search: example.com
+  dns: 172.17.0.10 
+  links:
+    - rhq-server
+rhq-server:
+  image: docker4jboss/jon3-server
+  command: /opt/jboss/jon/startJON.sh
+  container_name: rhq-server
+  hostname: rhq-server
+  dns_search: example.com
+  dns: 172.17.0.10 

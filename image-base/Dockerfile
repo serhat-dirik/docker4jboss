@@ -4,14 +4,14 @@ FROM fedora:22
 # Maintainer details
 MAINTAINER Serhat Dirik<serhat@redhat.com>
 
+ADD ./support /tmp/host/support
+
 ##############################################
 # Set root password
 ##############################################
 RUN echo "root:redhat1!" | /usr/sbin/chpasswd \
-# Execute system update
- && dnf -y update \
 # Install some necessary packages \
- && dnf -y install hostname git xmlstarlet saxon augeas bsdtar which unzip sudo openssl openssh-clients openssh-server iputils iproute httpd-tools wget tar git findutils vim-enhanced curl telnet initscripts \
+ && dnf -y install hostname git xmlstarlet saxon augeas bsdtar which unzip sudo openssl openssh-clients openssh-server rsync iputils iproute httpd-tools wget tar git findutils vim-enhanced curl telnet initscripts \
 # clean cache \
  && dnf clean all \
  # Increase ulimit
@@ -25,13 +25,20 @@ RUN echo "root:redhat1!" | /usr/sbin/chpasswd \
  && ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key \
  && ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key  \
  && ssh-keygen -q -N "" -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key \
+ && ssh-keygen -q -N "" -t rsa -f /root/.ssh/id_rsa \
+ && mkdir -p /root/.ssh \
+ && cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys\
+ && chmod -R 600 /root/.ssh/* \
  && ssh-keygen -A \
  && sed -i "s/#*UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config \
  && sed -i "s/#*UseDNS.*/UseDNS no/g" /etc/ssh/sshd_config \
- && echo "sshd: ALL" > /etc/hosts.allow
+ && echo "sshd: ALL" > /etc/hosts.allow \
+ && cp /tmp/host/support/ssh_config /root/.ssh/config \
+ && chmod 600 /root/.ssh/config \
+ && chown root:root /root/.ssh/config \
+ && cp /tmp/host/support/startSshAndLoop.sh /usr/bin \
+ && chmod +x /usr/bin/startSshAndLoop.sh \
+ && rm -rf /tmp/host
 
-ADD . /tmp/host
-RUN cp /tmp/host/support/startSshAndLoop.sh /usr/bin \
- && chmod +x /usr/bin/startSshAndLoop.sh
 CMD /usr/bin/startSshAndLoop.sh
-EXPOSE 25 22
+EXPOSE 22

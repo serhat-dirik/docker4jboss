@@ -31,10 +31,10 @@ RUN  groupadd -r jboss  && useradd -r -g jboss -m -d /opt/jboss -c "JBoss user" 
  && mkdir /opt/jboss/.m2 \
  && chown -R jboss:jboss /opt/jboss/.m2
 
-# Set the working directory to jboss' user home directory
-WORKDIR /opt/jboss
 # Specify the user which should be used to execute all commands below
 USER jboss
+# Set the working directory to jboss' user home directory
+WORKDIR /opt/jboss
 # Java home
 ENV JAVA_HOME /usr/lib/jvm/java
 # Maven home

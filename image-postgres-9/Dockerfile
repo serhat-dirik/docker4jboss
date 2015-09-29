@@ -1,4 +1,3 @@
-# Use fedora 22 image as the base
 FROM docker4jboss/base
 # Maintainer details
 MAINTAINER Serhat Dirik<serhat@redhat.com>
@@ -16,7 +15,7 @@ RUN  groupadd -r postgres \
 # clean cache \
  && dnf clean all
 
- ENV JAVA_HOME /usr/lib/jvm/java
+ENV JAVA_HOME /usr/lib/jvm/java
 ADD . /tmp/host
 RUN chmod -R 777 /tmp/host
 

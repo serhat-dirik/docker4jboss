@@ -1,0 +1,23 @@
+/subsystem=security/security-domain=modeshape-security:add
+/subsystem=security/security-domain=modeshape-security/authentication=classic:add( \
+    login-modules=[{"code" => "RealmDirect", "flag" => "required","module-options" => [ ("password-stacking"=>"useFirstPass")]}] \
+)
+/subsystem=modeshape/webapp=modeshape-rest.war:add
+/subsystem=modeshape/webapp=modeshape-webdav.war:add
+/subsystem=modeshape/webapp=modeshape-cmis.war:add
+/subsystem=infinispan/cache-container=modeshape/local-cache=dv:add
+/subsystem=infinispan/cache-container=modeshape/local-cache=dv/locking=LOCKING:add(isolation=READ_COMMITTED)
+/subsystem=infinispan/cache-container=modeshape/local-cache=dv/transaction=TRANSACTION:add(mode=NON_XA,locking=PESSIMISTIC)
+/subsystem=infinispan/cache-container=modeshape/local-cache=dv/file-store=FILE_STORE:add(path="modeshape/store/dv",relative-to="jboss.server.data.dir",passivation=false,purge=false)
+/subsystem=modeshape/repository=dv:add(cache-container="modeshape",cache-name="dv",security-domain="modeshape-security",use-anonymous-upon-failed-authentication="false",anonymous-roles=["readonly"],default-initial-content="initial-content-default.xml")
+/subsystem=modeshape/repository=dv/sequencer=delimited-text-sequencer:add( classname="org.modeshape.sequencer.text.DelimitedTextSequencer", module="org.modeshape.sequencer.text", path-expressions=["/files(//*.csv[*])/jcr:content[@jcr:data] => /derived/text/delimited/$1"], properties=[{ "splitPattern"=>"," }])
+/subsystem=modeshape/repository=dv/sequencer=fixed-width-text-sequencer:add( classname="org.modeshape.sequencer.text.FixedWidthTextSequencer", module="org.modeshape.sequencer.text", path-expressions=["/files(//*.txt[*])/jcr:content[@jcr:data] => /derived/text/fixedWidth/$1"], properties=[{ "commentMarker"=>"#" }])
+/subsystem=modeshape/repository=dv/sequencer=ddl-sequencer:add( classname="org.modeshape.sequencer.ddl.DdlSequencer", module="org.modeshape.sequencer.ddl", path-expressions=["/files(//*.ddl[*])/jcr:content[@jcr:data] => /derived/ddl/$1"])
+/subsystem=modeshape/repository=dv/sequencer=cnd-sequencer:add( classname="cnd", module="org.modeshape", path-expressions=["/files(//*.cnd[*])/jcr:content[@jcr:data] => /derived/cnd/$1"])
+/subsystem=modeshape/repository=dv/sequencer=teiid-model-sequencer:add( classname="model", module="org.modeshape.sequencer.teiid", path-expressions=["/files(//*.xmi[*])/jcr:content[@jcr:data] => /derived/teiid/models/$1"])
+/subsystem=modeshape/repository=dv/sequencer=teiid-vdb-sequencer:add( classname="vdb", module="org.modeshape.sequencer.teiid", path-expressions=["/files(//*.vdb[*])/jcr:content[@jcr:data] => /derived/teiid/vdbs/$1"])
+/subsystem=modeshape/repository=dv/sequencer=xsd-sequencer:add( classname="xsd", module="org.modeshape.sequencer.xsd", path-expressions=["/files(//*.xsd[*])/jcr:content[@jcr:data] => /derived/xsd/$1"])
+/subsystem=modeshape/repository=dv/sequencer=wsdl-sequencer:add( classname="wsdl", module="org.modeshape.sequencer.wsdl", path-expressions=["/files(//*.wsdl[*])/jcr:content[@jcr:data] => /derived/wsdl/$1"])
+/subsystem=modeshape/repository=dv/sequencer=xml-sequencer:add( classname="xml", module="org.modeshape.sequencer.xml", path-expressions=["/files(//*.xml[*])/jcr:content[@jcr:data] => /derived/xml/$1"])
+/subsystem=modeshape/repository=dv/sequencer=zip-sequencer:add( classname="zip", module="org.modeshape.sequencer.zip", path-expressions=["/files(//*.zip[*])/jcr:content[@jcr:data] => /derived/zip/$1"])
+deploy dataVirtualization/vdb/ModeShape.vdb
