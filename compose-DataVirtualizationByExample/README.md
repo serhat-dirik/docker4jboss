@@ -1,6 +1,6 @@
 EAP Domain Mode, JON & Httpd Mod Cluster
 =======
-
+(!! This project is still in progress)
  This environment is designed to demonstrate EAP 6 Domain Operating mode with other complementary JBoss components. You can test EAP 6 in domain mode with two slave nodes, JON management & monitoring capabilities. An apache httpd server is also installed as a LoadBalancer, so you can also test mod_cluster capabilities as well.
  ![Architecture](./resource/architecture.png)
 
