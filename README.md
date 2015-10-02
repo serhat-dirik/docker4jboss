@@ -13,7 +13,7 @@ I tried to use a clean naming convention for sub directories in the project, so 
 - [image-hadoop](./image-hadoop/README.md) Hadoop 2.7.1
 - [image-hive](./image-hive/README.md) Hive 1.2.1
 - [compose-EapDomain-JON-Httpd-Postgres](./compose-EapDomain-JON-Httpd-Postgres/README.md): 3 EAP server in domain mode as one master and two slaves, httpd as front load balancer and JON server for management & monitoring. A simple cluster test application is also included.
-- [compose-DataVirtualizationByExample](./compose-DataVirtualizationByExample/README.md) JDV 6.2 in domain mode (clustered), Httpd as load balancer, JON for management and monitoring, Postgres, Mysql and Hive as data sources are installed in this environment and [DataVirtualizationByExample](https://github.com/DataVirtualizationByExample) demo projects are also deployed. 
+- [compose-DataVirtualizationByExample](./compose-DataVirtualizationByExample/README.md): JDV 6.2 in domain mode (clustered), Httpd as load balancer, JON for management and monitoring, Postgres, Mysql and Hive as data sources are installed in this environment and [DataVirtualizationByExample](https://github.com/DataVirtualizationByExample) demo projects are also deployed. 
 -
 > All image binaries can be found in Red Hat's [internal registry](http:/docker-registry.usersys.redhat.com). If you're an RedHatter, you can download images from that repository instead of building locally.
 
