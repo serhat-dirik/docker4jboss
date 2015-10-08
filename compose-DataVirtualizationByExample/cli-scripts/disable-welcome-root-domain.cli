@@ -1,6 +1,0 @@
-/profile=ha/subsystem=web/virtual-server=default-host:write-attribute(name=enable-welcome-root,value=false)
-/profile=full-ha/subsystem=web/virtual-server=default-host:write-attribute(name=enable-welcome-root,value=false)
-
-/deployment=integration-platform-console.war:add(content=[{path=domain/deployments/integration-platform-console.war/,archive=false,relative-to=jboss.home.dir}],runtime-name=integration-platform-console.war)
-/server-group=main-server-group/deployment=integration-platform-console.war:add(enabled=true)
-/server-group=other-server-group/deployment=integration-platform-console.war:add(enabled=true)

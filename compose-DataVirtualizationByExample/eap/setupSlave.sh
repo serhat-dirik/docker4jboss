@@ -8,7 +8,7 @@ sudo sed -i -e "s/^<host name=.*/<host name=\"$LOCAL_NAME\" xmlns=\"urn:jboss:do
 #######
 #change agent config
 _HOST_NAME="$(cat /etc/hostname)"
-_RHQSERVER_IP="$(cat /etc/hosts|grep rhqserver|sed -n '1p'|cut -d$'\t' -f1)"
+_RHQSERVER_IP="$(cat /etc/hosts|grep rhq-server|sed -n '1p'|cut -d$'\t' -f1)"
 _RHQSERVER_IP_ESC="$(echo "$_RHQSERVER_IP" | sed 's/[^-A-Za-z0-9_]/\\&/g')"
 sed -i -e "s/<entry key=\"rhq\.agent\.server\.bind-address\".*/<entry key=\"rhq\.agent\.server\.bind-address\" value=\"$_RHQSERVER_IP_ESC\"\/>  /" /opt/jboss//jon/rhq-agent/conf/agent-configuration.xml
 

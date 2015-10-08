@@ -617,11 +617,11 @@
                 </mail-session>
             </subsystem>
             <subsystem xmlns="urn:jboss:domain:modcluster:1.2">
-                <mod-cluster-config advertise-socket="modcluster" connector="ajp">
-                    <dynamic-load-provider>
-                        <load-metric type="busyness"/>
-                    </dynamic-load-provider>
-                </mod-cluster-config>
+              <mod-cluster-config advertise-socket="modcluster"  proxy-list="httpd-server:6666" connector="ajp">
+                  <dynamic-load-provider>
+                      <load-metric type="busyness"/>
+                  </dynamic-load-provider>
+              </mod-cluster-config>
             </subsystem>
             <subsystem xmlns="urn:jboss:domain:naming:1.4">
                 <remote-naming/>

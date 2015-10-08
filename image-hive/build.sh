@@ -1,1 +1,1 @@
-docker build --force-rm=true -t docker4jboss/hive .
+docker build --force-rm=true --rm=true -t docker4jboss/hive .

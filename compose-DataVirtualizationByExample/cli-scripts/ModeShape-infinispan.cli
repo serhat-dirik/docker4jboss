@@ -1,1 +1,0 @@
-/subsystem=infinispan/cache-container=modeshape:add(module="org.modeshape")

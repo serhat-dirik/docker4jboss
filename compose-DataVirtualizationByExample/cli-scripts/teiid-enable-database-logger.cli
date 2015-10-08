@@ -1,8 +1,0 @@
-connect
-
-batch
-
-/subsystem=logging/logger=org.teiid.COMMAND_LOG:add(level=DEBUG, handlers=[TEIID_COMMAND_LOG], use-parent-handlers=false)
-/subsystem=logging/logger=org.teiid.AUDIT_LOG:add(level=DEBUG, handlers=[TEIID_AUDIT_LOG], use-parent-handlers=false)
-
-run-batch

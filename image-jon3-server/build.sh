@@ -1,1 +1,1 @@
-docker build --force-rm=true -t docker4jboss/jon3-server .
+docker build --force-rm=true --rm=true -t docker4jboss/jon3-server .

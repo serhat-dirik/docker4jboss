@@ -1,7 +1,0 @@
-/profile=ha/subsystem=datasources/jdbc-driver=modeshape:add(driver-name=modeshape,driver-module-name=org.modeshape.jdbc,driver-class-name=org.modeshape.jdbc.LocalJcrDriver)
-data-source add --profile=ha --name=ModeShapeDS --enabled=true --use-java-context=true --jndi-name="${db.jndi_name}" --connection-url="${db.url}" --driver-name="modeshape" --user-name="${db.user}" --password="${db.password}"
-/profile=ha/subsystem=datasources/data-source=ModeShapeDS/connection-properties=teiidsupport:add(value=true)
-
-/profile=full-ha/subsystem=datasources/jdbc-driver=modeshape:add(driver-name=modeshape,driver-module-name=org.modeshape.jdbc,driver-class-name=org.modeshape.jdbc.LocalJcrDriver)
-data-source add --profile=full-ha --name=ModeShapeDS --enabled=true --use-java-context=true --jndi-name="${db.jndi_name}" --connection-url="${db.url}" --driver-name="modeshape" --user-name="${db.user}" --password="${db.password}"
-/profile=full-ha/subsystem=datasources/data-source=ModeShapeDS/connection-properties=teiidsupport:add(value=true)
