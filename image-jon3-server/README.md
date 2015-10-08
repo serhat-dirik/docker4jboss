@@ -18,13 +18,16 @@ A comprehensive, all in one JON 3.3 Server image extended from [postgres image](
 The file list below need to be downloaded from [Red Hat Customer site](http://access.redhat.com) and placed into the this directory
 
 * JON 3.3 Files
-  * jon-server-3.3-update-03.zip
-  * jon-plugin-pack-eap-3.3.0.GA.zip
+  * jon-plugin-pack-amq-3.3.0.GA-update-02.zip
+  * jon-plugin-pack-bpms-3.3.0.GA-update-01.zip
+  * jon-plugin-pack-brms-3.3.0.GA-update-01.zip
+  * jon-plugin-pack-datavirtualization-3.3.0.GA-update-02.zip
+  * jon-plugin-pack-eap-3.3.0.GA-update-01.zip
+  * jon-plugin-pack-fuse-3.3.0.GA-update-02.zip
+  * jon-plugin-pack-jdg-3.3.0.GA-update-03.zip
   * jon-server-3.3.0.GA.zip
-  * jon-plugin-pack-ews-3.3.0.GA.zip  
-  * jon-plugin-pack-brms-bpms-3.3.0.GA.zip
-  * jon-plugin-pack-datavirtualization-3.3.0.GA.zip
-  * jon-plugin-pack-fuse-3.3.0.GA.zip  
+  * jon-server-3.3-update-03.zip
+
 
 ## Building The Image
  If you're planning to use your image for the composed demo environments within this project,you must use the recommended naming is ```docker4jboss/jon3-server```. Otherwise, specify the tag name as you wish.

@@ -57,6 +57,7 @@ RUN /usr/pgsql-9.3/bin/pg_ctl start -w -D $PGDATA  \
 USER root
 RUN   cp /tmp/host/support/pg_hba.conf $PGDATA/pg_hba.conf \
  && chown postgres:postgres /var/lib/pgsql/9.3/data/pg_hba.conf \
+ && rm -rf /home/postgres/jon-update \
  && rm -r /tmp/host/*
 
 USER postgres
