@@ -46,7 +46,7 @@ ADD ./support /tmp/host/support
 RUN chmod -R 777 /tmp/host
 
 
-RUN && ln -s /usr/share/java/postgresql-*.jar $HIVE_HOME/lib/. \
+RUN  ln -s /usr/share/java/postgresql-*.jar $HIVE_HOME/lib/. \
  && cp /tmp/host/support/hive-site.xml $HIVE_CONF \
  && cp /tmp/host/support/hive-log4j.properties $HIVE_CONF \
  && mv /tmp/host/support/store_sales* /tmp \

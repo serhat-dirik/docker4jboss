@@ -38,7 +38,7 @@ ENV RHQ_JAVA_HOME $JAVA_HOME
 
 RUN unzip /tmp/host/install/jon-server-3.3.0.GA.zip -d $HOME/jon \
  # plugin updates
- && unzip -o /tmp/host/install/jon-plugin-pack-datavirtualization-3.3.0.GA-update-02.zip -d $HOME/jon/jon-server-3.3.0.GA/ \
+ && unzip -o /tmp/host/install/jon-plugin-pack-datavirtualization-3.3.0.GA-update-03.zip -d $HOME/jon/jon-server-3.3.0.GA/ \
  && unzip -o /tmp/host/install/jon-plugin-pack-eap-3.3.0.GA-update-01.zip -d $HOME/jon/jon-server-3.3.0.GA/ \
  && unzip -o /tmp/host/install/jon-plugin-pack-jdg-3.3.0.GA-update-03.zip -d $HOME/jon/jon-server-3.3.0.GA/ \
  && unzip -o /tmp/host/install/jon-plugin-pack-fuse-3.3.0.GA-update-02.zip -d $HOME/jon/jon-server-3.3.0.GA/ \
@@ -51,7 +51,7 @@ RUN unzip /tmp/host/install/jon-server-3.3.0.GA.zip -d $HOME/jon \
  && cp /tmp/host/support/startJON.sh $HOME/jon \
  && chmod +x $HOME/jon/*.sh \
  && mkdir $HOME/jon-update \
- && unzip /tmp/host/install/jon-server-3.3-update-03.zip -d $HOME/jon-update
+ && unzip /tmp/host/install/jon-server-3.3-update-04.zip -d $HOME/jon-update
 
 
 # Switch back to root to clean environment

@@ -49,8 +49,8 @@ RUN mkdir $HOME/jon \
  && java -jar /tmp/host/install/rhq-enterprise-agent*.jar --install=$HOME/jon \
 # Update
  && mkdir $HOME/jon-update \
- && unzip /tmp/host/install/jon-server-3.3-update-03.zip -d $HOME/jon-update \
- && $HOME/jon-update/jon-server-3.3.0.GA-update-03/apply-updates.sh $HOME/jon/rhq-agent/ \
+ && unzip /tmp/host/install/jon-server-3.3-update-04.zip -d $HOME/jon-update \
+ && $HOME/jon-update/jon-server-3.3.0.GA-update-04/apply-updates.sh $HOME/jon/rhq-agent/ \
  && cp /tmp/host/support/agent-configuration.xml $HOME/jon/rhq-agent/conf
 
 
@@ -68,6 +68,7 @@ RUN mkdir $HOME/eap \
  && $HOME/eap/jboss-eap-6.4/bin/jboss-cli.sh --command="patch apply /tmp/host/install/jboss-eap-6.4.2-patch.zip --override-all" \
  && $HOME/eap/jboss-eap-6.4/bin/jboss-cli.sh --command="patch apply /tmp/host/install/jboss-eap-6.4.3-patch.zip --override-all" \
  && $HOME/eap/jboss-eap-6.4/bin/jboss-cli.sh --command="patch apply /tmp/host/install/BZ-1258994.zip --override-all" \
+ && $HOME/eap/jboss-eap-6.4/bin/jboss-cli.sh --command="patch apply /tmp/host/install/jboss-eap-6.4.4-patch.zip --override-all" \
 # Modify permissions on Maven settings file
  && cp /tmp/host/support/settings.xml /opt/jboss/.m2/settings.xml \
  && chown jboss:jboss /opt/jboss/.m2/settings.xml \

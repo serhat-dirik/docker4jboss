@@ -17,6 +17,10 @@ sh build.sh
 ```
 
 > You can clean your environment with ```docker-clean``` script
+### Installation Files
+
+You need to download & place required files into install subdirectory. Please read [README](./install/README.md) file under install subdirectory
+to see list of required files and how to download.
 
 ## How to use this image
 

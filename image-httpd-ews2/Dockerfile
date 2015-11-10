@@ -30,8 +30,8 @@ RUN mkdir $HOME/jon \
  && java -jar /tmp/host/install/rhq-enterprise-agent*.jar --install=$HOME/jon \
 # Update
  && mkdir $HOME/jon-update \
- && unzip /tmp/host/install/jon-server-3.3-update-03.zip -d $HOME/jon-update \
- && $HOME/jon-update/jon-server-3.3.0.GA-update-03/apply-updates.sh $HOME/jon/rhq-agent/ \
+ && unzip /tmp/host/install/jon-server-3.3-update-04.zip -d $HOME/jon-update \
+ && $HOME/jon-update/jon-server-3.3.0.GA-update-04/apply-updates.sh $HOME/jon/rhq-agent/ \
  && cp /tmp/host/support/agent-configuration.xml $HOME/jon/rhq-agent/conf
 
 ##############################################

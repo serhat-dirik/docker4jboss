@@ -1,7 +1,7 @@
 EWS 2 - HTTPD Image
 =======
   Extended from [base image](../image-base/README.md).
-  
+
 - Apache httpd server with mod_cluster. EAP 6 binaries (JBoss EWS 2.1)  are used for this setup. /opt/apache/jboss-ews-2.1
 - JON agent is also installed and can be found under /opt/apache/jon
 - JDK 1.8
@@ -32,15 +32,8 @@ If you like to use this image as a loadbalancer for your EAP servers, don't forg
 
 ### Installation Files
 
-The file list below need to be downloaded from [Red Hat Customer site](http://access.redhat.com) and placed into the install subdirectory.
-
-* EAP 6.4 Files
-  * jboss-eap-native-webserver-connectors-6.4.0-RHEL7-x86_64.zip
-  * jboss-ews-httpd-2.1.0-RHEL7-x86_64.zip
-  * jws-httpd-3.0.0-RHEL7-x86_64.zip
-* JON 3.3 Files
-  * jon-server-3.3-update-03.zip
-  * rhq-enterprise-agent-4.12.0.JON330GA.jar (you need to extract this file from JON Server installation zip file)
+You need to download & place required files into install subdirectory. Please read [README](./install/README.md) file under install subdirectory
+to see list of required files and how to download.
 
 ## Building The Image
 

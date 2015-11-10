@@ -1,0 +1,20 @@
+dv6-server:
+  image: docker4jboss/dv6
+  volumes:
+    - ./dv:/tmp/dvConfig
+  command: /usr/bin/startDV.sh
+  container_name: dv6-server
+  hostname: dv6-server
+  dns: 172.17.0.1 
+  dns_search: example.com
+  links:
+    - postgres-server
+postgres-server:
+  image: docker4jboss/postgres-9
+  volumes:
+    - ./postgres:/tmp/postgresConfig
+  command: /tmp/postgresConfig/setupPostgres.sh
+  container_name: postgres-server
+  hostname: postgres-server
+  dns_search: example.com
+  dns: 172.17.0.1 
