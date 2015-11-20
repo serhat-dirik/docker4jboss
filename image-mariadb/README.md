@@ -1,14 +1,14 @@
-Mysql Image
+Maria DB Image
 =======
 
-A Mysql database image derived from [base image](../image-base/README.md) including ssh server.
+A maria database image derived from [base image](../image-base/README.md) including ssh server.
 
 
 ## Building The Image
  If you're planning to use your image for the composed demo environments within this project,you must use the recommended naming ```docker4jboss/mysql```. Otherwise, specify the tag name as you wish.
 
 ```bash
-docker build --force-rm=true -t docker4jboss/mysql .
+docker build --force-rm=true -t docker4jboss/mariadb .
 ```
 or simply run
 
@@ -23,7 +23,7 @@ sh build.sh
   Just run it in interactive mode or daemon mode
 
  ```bash
-  docker run -it --name mysql --hostname mysql docker4jboss/mysql
+  docker run -it --name mariadb --hostname mariadb docker4jboss/mariadb
  ```
 
-  Standard 5432 port for postgres and 22 for ssh are exposed. ```postgres``` user is defined with ```postgres``` password. Port 22 also exposed, so you can ssh into containers
+  Standard 3306 port for mariadb and 22 for ssh are exposed. ```root``` user is defined with ```mariadb``` password. Port 22 also exposed, so you can ssh into containers
