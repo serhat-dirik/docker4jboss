@@ -7,8 +7,7 @@ sed -i -e "s/dns:.*/dns: $_DNS_IP_ESC /" ./docker-compose.yml
 docker-compose up -d
 
 echo 'Provisioning is done, adding host names !'
-for container in rhqserver httpdserver eap-slave2 eap-slave1 eap-master dns; do
+for container in rhq-server httpd-server dv-slave2 dv-slave1 dv-master dns; do
   c_ip=$(docker inspect -f '{{.NetworkSettings.IPAddress}}' $container )
   #sudo bash -c "echo $c_ip $container >> /etc/hosts"
 done
-echo Done!

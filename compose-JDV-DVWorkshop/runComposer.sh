@@ -5,10 +5,8 @@ _DNS_IP_ESC="$(echo "$_DNS_IP" | sed 's/[^-A-Za-z0-9_]/\\&/g')"
 sed -i -e "s/dns:.*/dns: $_DNS_IP_ESC /" ./docker-compose.yml
 
 docker-compose up -d
-
 echo 'Provisioning is done, adding host names !'
-for container in rhqserver httpdserver eap-slave2 eap-slave1 eap-master dns; do
+for container in mariadb-server postgres-server dv6-server dns; do
   c_ip=$(docker inspect -f '{{.NetworkSettings.IPAddress}}' $container )
   #sudo bash -c "echo $c_ip $container >> /etc/hosts"
 done
-echo Done!

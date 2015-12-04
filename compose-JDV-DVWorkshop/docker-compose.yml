@@ -5,10 +5,12 @@ dv6-server:
   command: /usr/bin/startDV.sh
   container_name: dv6-server
   hostname: dv6-server
-  dns: 172.17.0.1 
+  dns: 172.17.0.2 
   dns_search: example.com
+  privileged: true
   links:
     - postgres-server
+    - mariadb-server
 postgres-server:
   image: docker4jboss/postgres-9
   volumes:
@@ -17,4 +19,15 @@ postgres-server:
   container_name: postgres-server
   hostname: postgres-server
   dns_search: example.com
-  dns: 172.17.0.1 
+  privileged: true
+  dns: 172.17.0.2 
+mariadb-server:
+  image: docker4jboss/mariadb
+  volumes:
+    - ./mariadb:/tmp/mariadbConfig
+  command: /tmp/mariadbConfig/setupMariadb.sh
+  container_name: mariadb-server
+  hostname: mariadb-server
+  privileged: true
+  dns_search: example.com
+  dns: 172.17.0.2 

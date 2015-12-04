@@ -1,9 +1,5 @@
-JDV Domain Mode, JON & Httpd Mod Cluster
+JDV In Domain Mode, JON & Httpd Mod Cluster
 =======
-(!! This project is still in progress)
-
-
-## How to run
 
    If everything is properly installed, the following command should be enough
 

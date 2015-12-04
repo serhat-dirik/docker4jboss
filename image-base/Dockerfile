@@ -1,5 +1,5 @@
-# Use fedora 22 image as the base
-FROM fedora:22
+# Use fedora latest image as the base
+FROM fedora
 
 # Maintainer details
 MAINTAINER Serhat Dirik<serhat@redhat.com>
@@ -11,7 +11,7 @@ ADD ./support /tmp/host/support
 ##############################################
 RUN echo "root:redhat1!" | /usr/sbin/chpasswd \
 # Install some necessary packages \
- && dnf -y install hostname git xmlstarlet saxon augeas bsdtar which unzip sudo openssl openssh-clients openssh-server rsync iputils iproute httpd-tools wget tar git findutils vim-enhanced curl telnet initscripts \
+ && dnf -y install hostname git which unzip sudo openssl openssh-clients openssh-server rsync iputils iproute httpd-tools wget tar git findutils vim-enhanced curl telnet initscripts \
 # clean cache \
  && dnf clean all \
  # Increase ulimit
