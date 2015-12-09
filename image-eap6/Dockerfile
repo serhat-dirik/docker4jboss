@@ -1,5 +1,5 @@
 # Use fedora 22 image as the base
-FROM docker4jboss/base
+FROM docker-registry.usersys.redhat.com/docker4jboss/base
 
 # Maintainer details
 MAINTAINER Serhat Dirik<serhat@redhat.com>
@@ -69,6 +69,7 @@ RUN mkdir $HOME/eap \
  && $HOME/eap/jboss-eap-6.4/bin/jboss-cli.sh --command="patch apply /tmp/host/install/jboss-eap-6.4.3-patch.zip --override-all" \
  && $HOME/eap/jboss-eap-6.4/bin/jboss-cli.sh --command="patch apply /tmp/host/install/BZ-1258994.zip --override-all" \
  && $HOME/eap/jboss-eap-6.4/bin/jboss-cli.sh --command="patch apply /tmp/host/install/jboss-eap-6.4.4-patch.zip --override-all" \
+ && $HOME/eap/jboss-eap-6.4/bin/jboss-cli.sh --command="patch apply /tmp/host/install/jboss-eap-6.4.5-patch.zip --override-all" \
 # Modify permissions on Maven settings file
  && cp /tmp/host/support/settings.xml /opt/jboss/.m2/settings.xml \
  && chown jboss:jboss /opt/jboss/.m2/settings.xml \
@@ -78,7 +79,8 @@ RUN mkdir $HOME/eap \
 # Switch back to root to clean environment
 USER root
 #Clean Up
-RUN cp /tmp/host/support/*.sh /usr/bin \
+RUN cp /tmp/host/support/start*.sh /usr/bin \
+ && cp /tmp/host/support/jboss.sh /etc/profile.d \
  && rm -r /tmp/host/* \
  && rm -r /opt/jboss/jon-update \
  && rm /opt/jboss/rhq-agent-update.log \

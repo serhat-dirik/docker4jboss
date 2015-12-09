@@ -1,5 +1,5 @@
 # Use fedora 22 image as the base
-FROM docker4jboss/base
+FROM docker-registry.usersys.redhat.com/docker4jboss/base
 
 # Maintainer details
 MAINTAINER Serhat Dirik<serhat@redhat.com>

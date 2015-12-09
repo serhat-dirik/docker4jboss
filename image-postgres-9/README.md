@@ -5,10 +5,10 @@ A Postgres 9.3 database image derived from [base image](../image-base/README.md)
 
 
 ## Building The Image
- If you're planning to use your image for the composed demo environments within this project,you must use the recommended naming ```docker4jboss/postgres-9.3```. Otherwise, specify the tag name as you wish.
+ If you're planning to use your image for the composed demo environments within this project,you must use the recommended naming ```docker-registry.usersys.redhat.com/docker4jboss/postgres-9.3```. Otherwise, specify the tag name as you wish.
 
 ```bash
-docker build --force-rm=true -t docker4jboss/postgres-9 .
+docker build --force-rm=true -t docker-registry.usersys.redhat.com/docker4jboss/postgres-9 .
 ```
 or simply run
 

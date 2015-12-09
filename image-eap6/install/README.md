@@ -9,6 +9,7 @@ The file list below need to be downloaded from [Red Hat Customer site](http://ac
   * jboss-eap-6.4.3-patch.zip
   * BZ-1258994.zip (6.4.3 fix update)
   * jboss-eap-6.4.4-patch.zip
+  * jboss-eap-6.4.5-patch.zip
   * jboss-eap-native-utils-6.4.0-RHEL7-x86_64.zip
   * jboss-eap-native-webserver-connectors-6.4.0-RHEL7-x86_64.zip
   * jboss-eap-native-6.4.0-RHEL7-x86_64.zip

@@ -16,3 +16,7 @@ JDV In Domain Mode, JON & Httpd Mod Cluster
 ```bash
 sh destroyDemo.sh
 ```
+  or
+```bash
+sh destroyComposer.sh
+```

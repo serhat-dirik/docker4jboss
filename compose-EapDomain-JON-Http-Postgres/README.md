@@ -48,6 +48,11 @@ JON Server (rhqserver) also has a postgres server installation which can be used
 ```bash
 sh destroyDemo.sh
 ```
+  or
+```bash
+sh destroyComposer.sh
+```
+
 
 ## EAP CLuster (Session Sharing) Demo
 

@@ -1,16 +1,18 @@
 #!/bin/bash
+ 
+echo "Removing host names"
 
-for container in rhqserver httpdserver eap-slave2 eap-slave1 eap-master; do
+for container in rhq-server httpd-server dv-slave2 dv-slave1 dv-master; do
   echo clearing $container
   cstate=$(docker inspect -f {{.State.Running}} $container)
-  if  [ -z "$cstate" ] || [ ! $cstate ]  ;  then   continue; fi
+    if  [ -z "$cstate" ] || [ ! $cstate ]  ;  then   continue; fi
   c_ip=$(docker inspect -f '{{.NetworkSettings.IPAddress}}' $container )
   c_ip_esc="$(echo "$c_ip" | sed 's/[^-A-Za-z0-9_]/\\&/g')"
   sudo bash -c "sed -i -e '/^$c_ip_esc/ d' /etc/hosts"
-  docker stop $container
-  docker kill $container >> /dev/null 2>&1
-  docker rm   $container
 done
+echo "Destroying Containers"
+docker-compose stop
+docker-compose rm -f
 
 echo docker ps
 docker ps

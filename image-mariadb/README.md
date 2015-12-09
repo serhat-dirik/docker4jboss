@@ -5,10 +5,10 @@ A maria database image derived from [base image](../image-base/README.md) includ
 
 
 ## Building The Image
- If you're planning to use your image for the composed demo environments within this project,you must use the recommended naming ```docker4jboss/mysql```. Otherwise, specify the tag name as you wish.
+ If you're planning to use your image for the composed demo environments within this project,you must use the recommended naming ```docker-registry.usersys.redhat.com/docker4jboss/mysql```. Otherwise, specify the tag name as you wish.
 
 ```bash
-docker build --force-rm=true -t docker4jboss/mariadb .
+docker build --force-rm=true -t docker-registry.usersys.redhat.com/docker4jboss/mariadb .
 ```
 or simply run
 

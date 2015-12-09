@@ -22,10 +22,10 @@ Postgres server is installed for hive metadata, but it can be also used for othe
 
 ## Building The Image
 
- If you're planning to use your image for the composed demo environments within this project, you must use the recommended naming ```docker4jboss/hive```. Otherwise, specify the tag name as you wish.
+ If you're planning to use your image for the composed demo environments within this project, you must use the recommended naming ```docker-registry.usersys.redhat.com/docker4jboss/hive```. Otherwise, specify the tag name as you wish.
 
 ```bash
-docker build --force-rm=true -t docker4jboss/hive .
+docker build --force-rm=true -t docker-registry.usersys.redhat.com/docker4jboss/hive .
 ```
   or simply run
 
@@ -42,4 +42,3 @@ After launching the container, ssh into it and type the following to run a sampl
 ```
 
 You should see, map-reduce processes are proceed and successfully finished. On the web-ui ```http://$(containerip):8088``` same results can be seen.
-  

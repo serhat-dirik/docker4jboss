@@ -1,33 +1,33 @@
 dv6-server:
-  image: docker4jboss/dv6
+  image:docker-registry.usersys.redhat.com/docker4jboss/dv6
   volumes:
     - ./dv:/tmp/dvConfig
   command: /usr/bin/startDV.sh
   container_name: dv6-server
   hostname: dv6-server
   dns: 172.17.0.2 
-  dns_search: example.com
+  dns_search: docker
   privileged: true
   links:
     - postgres-server
     - mariadb-server
 postgres-server:
-  image: docker4jboss/postgres-9
+  image:docker-registry.usersys.redhat.com/docker4jboss/postgres-9
   volumes:
     - ./postgres:/tmp/postgresConfig
   command: /tmp/postgresConfig/setupPostgres.sh
   container_name: postgres-server
   hostname: postgres-server
-  dns_search: example.com
+  dns_search: docker
   privileged: true
   dns: 172.17.0.2 
 mariadb-server:
-  image: docker4jboss/mariadb
+  image:docker-registry.usersys.redhat.com/docker4jboss/mariadb
   volumes:
     - ./mariadb:/tmp/mariadbConfig
   command: /tmp/mariadbConfig/setupMariadb.sh
   container_name: mariadb-server
   hostname: mariadb-server
   privileged: true
-  dns_search: example.com
+  dns_search: docker
   dns: 172.17.0.2 

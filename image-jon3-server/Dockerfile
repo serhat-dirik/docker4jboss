@@ -1,5 +1,5 @@
 # Use postgres image as a base
-FROM docker4jboss/postgres-9
+FROM docker-registry.usersys.redhat.com/docker4jboss/postgres-9
 # Maintainer details
 MAINTAINER Serhat Dirik<serhat@redhat.com>
 

@@ -20,10 +20,10 @@ to see list of required files and how to download.
 
 
 ## Building The Image
- If you're planning to use your image for the composed demo environments within this project,you must use the recommended naming is ```docker4jboss/jon3-server```. Otherwise, specify the tag name as you wish.
+ If you're planning to use your image for the composed demo environments within this project,you must use the recommended naming is ```docker-registry.usersys.redhat.com/docker4jboss/jon3-server```. Otherwise, specify the tag name as you wish.
 
 ```bash
-docker build --force-rm=true -t docker4jboss/jon3-server .
+docker build --force-rm=true -t docker-registry.usersys.redhat.com/docker4jboss/jon3-server .
 ```
 
 or simply run

@@ -1,5 +1,5 @@
 #!/bin/bash
-IMAGE=docker4jboss/httpd-ews2
+IMAGE=docker-registry.usersys.redhat.com/docker4jboss/httpd-ews2
 #Build
 echo "Building image $IMAGE"
 docker build --force-rm=true --rm=true -t $IMAGE .

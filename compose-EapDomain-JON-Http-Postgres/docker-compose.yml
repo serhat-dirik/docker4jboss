@@ -1,61 +1,61 @@
 master:
-  image: docker4jboss/eap6
+  image: docker-registry.usersys.redhat.com/docker4jboss/eap6
   volumes:
     - ./eap:/eapConfig
   command: /eapConfig/setupMaster.sh
   container_name: eap-master
   hostname: eap-master
   dns: 172.17.0.2 
-  dns_search: example.com
+  dns_search: docker
   privileged: true
   links:
     - rhqserver
     - httpdserver
 slave1:
-  image: docker4jboss/eap6
+  image: docker-registry.usersys.redhat.com/docker4jboss/eap6
   volumes:
     - ./eap:/eapConfig
   command: /eapConfig/setupSlave.sh
   container_name: eap-slave1
   hostname: eap-slave1
   dns: 172.17.0.2 
-  dns_search: example.com
+  dns_search: docker
   privileged: true
   links:
     - master
     - rhqserver
     - httpdserver
 slave2:
-  image: docker4jboss/eap6
+  image: docker-registry.usersys.redhat.com/docker4jboss/eap6
   volumes:
     - ./eap:/eapConfig
   command: /eapConfig/setupSlave.sh
   container_name: eap-slave2
   hostname: eap-slave2
   dns: 172.17.0.2 
-  dns_search: example.com
+  dns_search: docker
   privileged: true
   links:
     - master
     - rhqserver
     - httpdserver
 httpdserver:
-  image: docker4jboss/httpd-ews2
+  image: docker-registry.usersys.redhat.com/docker4jboss/httpd-ews2
   volumes:
     - ./apache:/apacheConfig
   command: /apacheConfig/setup.sh
   container_name: httpdserver
   hostname: httpdserver
-  dns_search: example.com
+  dns_search: docker
   dns: 172.17.0.2 
   privileged: true
   links:
     - rhqserver
 rhqserver:
-  image: docker4jboss/jon3-server
+  image: docker-registry.usersys.redhat.com/docker4jboss/jon3-server
   command: /opt/jboss/jon/startJON.sh
   container_name: rhqserver
   hostname: rhqserver
-  dns_search: example.com
+  dns_search: docker
   dns: 172.17.0.2 
   privileged: true

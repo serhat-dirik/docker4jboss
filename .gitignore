@@ -10,3 +10,4 @@ image-postgres-9/install/*.jar
 image-dv6/install/*.zip
 image-dv6/install/*.jar
 image-dv6/install/*.war
+tmp/**

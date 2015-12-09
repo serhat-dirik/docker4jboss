@@ -5,15 +5,16 @@ This project contains docker images & composed environments for JBoss Middleware
 I tried to use a clean naming convention for sub directories in the project, so it should be clear what resides under each subdirectory. You can also find a fair documentation  and instructions under each subdirectory. I suggest start digging with compose subdirectories that created for composition of several components working together for a certain purpose, than build required images & start playing.
 
 - [image-base](./image-base/README.md) : A Base image that extended from fedora:22 and loaded with several useful tools including ssh server
-- [image-eap6](./image-eap6/README.md) : JBoss EAP 6.4.3 and JON Agent
+- [image-eap6](./image-eap6/README.md) : JBoss EAP 6.4.5 and JON Agent
 - [image-httpd-ews2](./image-httpd-ews2/README.md): Apache HTTPD (JBoss EWS2) server & JON Agent
 - [image-jon3-server](./image-jon3-server/README.md): JON 3.3 All in one server, eap, ews, dv, bpm, brms, fuse, amq agents are included
 - [image-postgres-9](./image-postgres-9/README.md): Postgres 9.3 Server
-- [image-dv6](./image-dv6/README.md): JBoss Data Virtualizations 6.2 + Web UI
+- [image-mariadb](./image-mariadb/README.md): Mariadb Server
+- [image-dv6](./image-dv6/README.md): JBoss Data Virtualization 6.2 + Web UI
 - [image-hadoop](./image-hadoop/README.md) Hadoop 2.7.1
 - [image-hive](./image-hive/README.md) Hive 1.2.1
 - [compose-EapDomain-JON-Httpd-Postgres](./compose-EapDomain-JON-Httpd-Postgres/README.md): 3 EAP server in domain mode as one master and two slaves, httpd as front load balancer and JON server for management & monitoring. A simple cluster test application is also included.
-- [compose-DataVirtualizationByExample](./compose-DataVirtualizationByExample/README.md): JDV 6.2 in domain mode (clustered), Httpd as load balancer, JON for management and monitoring, Postgres, Mysql and Hive as data sources are installed in this environment and [DataVirtualizationByExample](https://github.com/DataVirtualizationByExample) demo projects are also deployed.
+- [compose-DataVirtualizationByExample](./compose-DataVirtualizationByExample/README.md): JDV 6.2 in domain mode (clustered, 3 nodes as 1 master and 2 slaves), Httpd as load balancer, JON for management and monitoring, Postgres, Mysql and Hive as data sources are installed in this environment and [DataVirtualizationByExample](https://github.com/DataVirtualizationByExample) demo projects are also deployed.
 
 > All image binaries can be found in Red Hat's [internal registry](http:/docker-registry.usersys.redhat.com). If you're an RedHatter, you can download images from that repository instead of building locally.
 

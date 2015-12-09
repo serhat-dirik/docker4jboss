@@ -21,10 +21,10 @@ To ssh into container:
 
 ## Building The Image
 
- If you're planning to use your image for the composed demo environments within this project, you must use the recommended naming ```docker4jboss/hadoop```. Otherwise, specify the tag name as you wish.
+ If you're planning to use your image for the composed demo environments within this project, you must use the recommended naming ```docker-registry.usersys.redhat.com/docker4jboss/hadoop```. Otherwise, specify the tag name as you wish.
 
 ```bash
-docker build --force-rm=true -t docker4jboss/hadoop .
+docker build --force-rm=true -t docker-registry.usersys.redhat.com/docker4jboss/hadoop .
 ```
   or simply run
 

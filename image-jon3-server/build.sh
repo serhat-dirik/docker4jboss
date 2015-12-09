@@ -1,5 +1,5 @@
 #!/bin/bash
-IMAGE=docker4jboss/jon3-server
+IMAGE=docker-registry.usersys.redhat.com/docker4jboss/jon3-server
 #Build
 echo "Building image $IMAGE"
 docker build --force-rm=true --rm=true -t $IMAGE .

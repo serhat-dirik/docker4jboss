@@ -1,5 +1,5 @@
 #!/bin/bash
-IMAGE=docker4jboss/hive
+IMAGE=docker-registry.usersys.redhat.com/docker4jboss/hive
 #Build
 echo "Building image $IMAGE"
 docker build --force-rm=true --rm=true -t $IMAGE .
