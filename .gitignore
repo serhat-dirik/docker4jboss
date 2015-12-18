@@ -1,6 +1,8 @@
 .git/**
 image-eap6/install/*.zip
 image-eap6/install/*.jar
+image-jdg6/install/*.zip
+image-jdg6/install/*.jar
 image-httpd-ews2/install/*.zip
 image-httpd-ews2/install/*.jar
 image-jon3-server/install/*.zip

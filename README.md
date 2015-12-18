@@ -11,10 +11,13 @@ I tried to use a clean naming convention for sub directories in the project, so 
 - [image-postgres-9](./image-postgres-9/README.md): Postgres 9.3 Server
 - [image-mariadb](./image-mariadb/README.md): Mariadb Server
 - [image-dv6](./image-dv6/README.md): JBoss Data Virtualization 6.2 + Web UI
+- [image-jdg6](./image-jdg/README.md): JBoss Data Virtualization 6.5.1
 - [image-hadoop](./image-hadoop/README.md) Hadoop 2.7.1
 - [image-hive](./image-hive/README.md) Hive 1.2.1
-- [compose-EapDomain-JON-Httpd-Postgres](./compose-EapDomain-JON-Httpd-Postgres/README.md): 3 EAP server in domain mode as one master and two slaves, httpd as front load balancer and JON server for management & monitoring. A simple cluster test application is also included.
-- [compose-DataVirtualizationByExample](./compose-DataVirtualizationByExample/README.md): JDV 6.2 in domain mode (clustered, 3 nodes as 1 master and 2 slaves), Httpd as load balancer, JON for management and monitoring, Postgres, Mysql and Hive as data sources are installed in this environment and [DataVirtualizationByExample](https://github.com/DataVirtualizationByExample) demo projects are also deployed.
+- [compose-EapDomain-JON-Httpd](./compose-EapDomain-JON-Httpd-Postgres/README.md): 3 EAP server in domain mode as one master and two slaves, httpd as front load balancer and JON server for management & monitoring. A simple cluster test application is also included.
+- [compose-JdvClusterAndJon](./compose-JdvClusterAndJon/README.md): JDV 6.2 in domain mode (clustered, 3 nodes as 1 master and 2 slaves), Httpd as load balancer, JON for management and monitoring
+- [compose-DVWorkshop](./compose-DVWorkshop/README.md): [Data Virtualization Workshop](https://github.com/DataVirtualizationByExample/DVWorkshop) environment
+- [compose-JDG-Visualizer](./compose-JDG-Visualizer): JBoss Data Grid demo with Visualizer application 
 
 > All image binaries can be found in Red Hat's [internal registry](http:/docker-registry.usersys.redhat.com). If you're an RedHatter, you can download images from that repository instead of building locally.
 

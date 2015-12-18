@@ -1,7 +1,7 @@
 Base JDG 6 Image
 =======
 
-A base JBoss EAP 6 (currently 6.5.1) image that extends [base image](../image-base/README.md) to create & execute JD 6 demo containers on top. JON Agent & sshd server are also installed inside this image, therefore JON Server can be configured to monitor & manage and it can be also used as a remote host with ssh support.
+A base JBoss JDG 6 (currently 6.5.1) image that extends [base image](../image-base/README.md) to create & execute JD 6 demo containers on top. JON Agent & sshd server are also installed inside this image, therefore JON Server can be configured to monitor & manage and it can be also used as a remote host with ssh support.
 
 ### Image Content
 
