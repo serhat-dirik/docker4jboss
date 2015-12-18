@@ -40,11 +40,12 @@ RUN unzip /tmp/host/install/jon-server-3.3.0.GA.zip -d $HOME/jon \
  # plugin updates
  && unzip -o /tmp/host/install/jon-plugin-pack-datavirtualization-3.3.0.GA-update-03.zip -d $HOME/jon/jon-server-3.3.0.GA/ \
  && unzip -o /tmp/host/install/jon-plugin-pack-eap-3.3.0.GA-update-01.zip -d $HOME/jon/jon-server-3.3.0.GA/ \
+ && unzip -o /tmp/host/install/jon-plugin-pack-ews-3.3.0.GA-update-01.zip -d $HOME/jon/jon-server-3.3.0.GA/ \
  && unzip -o /tmp/host/install/jon-plugin-pack-jdg-3.3.0.GA-update-03.zip -d $HOME/jon/jon-server-3.3.0.GA/ \
- && unzip -o /tmp/host/install/jon-plugin-pack-fuse-3.3.0.GA-update-02.zip -d $HOME/jon/jon-server-3.3.0.GA/ \
+ && unzip -o /tmp/host/install/jon-plugin-pack-fuse-3.3.0.GA-update-03.zip -d $HOME/jon/jon-server-3.3.0.GA/ \
  && unzip -o /tmp/host/install/jon-plugin-pack-brms-3.3.0.GA-update-01.zip -d $HOME/jon/jon-server-3.3.0.GA/ \
  && unzip -o /tmp/host/install/jon-plugin-pack-bpms-3.3.0.GA-update-01.zip -d $HOME/jon/jon-server-3.3.0.GA/ \
- && unzip -o /tmp/host/install/jon-plugin-pack-amq-3.3.0.GA-update-02.zip -d $HOME/jon/jon-server-3.3.0.GA/ \
+ && unzip -o /tmp/host/install/jon-plugin-pack-amq-3.3.0.GA-update-03.zip -d $HOME/jon/jon-server-3.3.0.GA/ \
  # Config
  && cp $HOME/jon/jon-server-3.3.0.GA/bin/rhq-server.properties $HOME/jon/jon-server-3.3.0.GA/bin/rhq-server.properties.orig \
  && cp /tmp/host/support/rhq-server.properties $HOME/jon/jon-server-3.3.0.GA/bin/rhq-server.properties \
